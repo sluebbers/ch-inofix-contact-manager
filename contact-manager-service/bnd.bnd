@@ -4,7 +4,24 @@ Bundle-Version: 1.0.0
 Export-Package:\
     ch.inofix.contact.model.impl,\
     ch.inofix.contact.service.permission
-Include-Resource: @ez-vcard-0.10.2.jar,@jackson-core-2.6.1.jar,@jackson-databind-2.6.1.jar,@jackson-annotations-2.6.1.jar,@vinnie-2.0.0.jar,@jsoup-1.8.3.jar
+Bundle-ClassPath:\
+  .,\
+  lib/ez-vcard.jar,\
+  lib/jackson-annotations.jar,\
+  lib/jackson-core.jar,\
+  lib/jackson-databind.jar,\
+  lib/vinnie.jar,\
+  lib/jsoup.jar
+-includeresource:\
+  lib/ez-vcard.jar=ez-vcard-0.10.2.jar,\
+  lib/jackson-annotations.jar=jackson-annotations-*.jar,\
+  lib/jackson-core.jar=jackson-core-*.jar,\
+  lib/jackson-databind.jar=jackson-databind-*.jar,\
+  lib/vinnie.jar=vinnie-*.jar,\
+  lib/jsoup.jar=jsoup-*.jar
+Import-Package:\
+  com.googlecode.ez-vcard.ezVCard.*,\
+  *
 Liferay-Require-SchemaVersion: 1.0.0
 Liferay-Service: true
 

@@ -21,12 +21,6 @@ import com.liferay.portal.kernel.util.Validator;
 
 import aQute.bnd.annotation.ProviderType;
 
-import ezvcard.Ezvcard;
-import ezvcard.VCard;
-import ezvcard.property.FormattedName;
-import ezvcard.property.Organization;
-import ezvcard.property.StructuredName;
-
 /**
  * The extended model implementation for the Contact service. Represents a row
  * in the &quot;Inofix_Contact&quot; database table, with each column mapped to
@@ -54,78 +48,84 @@ public class ContactImpl extends ContactBaseImpl {
 
     public String getFormattedName() {
 
-        String formattedName = "";
+        String formattedName = "Formatted Name";
 
-        FormattedName fn = getVCard().getFormattedName();
-
-        if (fn != null) {
-            formattedName = fn.getValue();
-        }
-
-        return formattedName;
-
-    }
-
-    public VCard getVCard() {
-
-        String str = getCard();
-        VCard vCard = null;
-
-        if (Validator.isNotNull(str)) {
-            vCard = Ezvcard.parse(str).first();
-        } else {
-            vCard = new VCard();
-        }
-
-        return vCard;
+        //TODO reenable after proper ezvcard import 
+//        FormattedName fn = getVCard().getFormattedName();
+//
+//        if (fn != null) {
+//            formattedName = fn.getValue();
+//        }
+//
+          return formattedName;
 
     }
+
+    //TODO reenable after proper ezvcard import
+    public String getVCard() {
+	    String tmpReturn = "testVCardString";
+	    return tmpReturn;
+    }
+//
+//        String str = getCard();
+//        VCard vCard = null;
+//
+//        if (Validator.isNotNull(str)) {
+//            vCard = Ezvcard.parse(str).first();
+//        } else {
+//            vCard = new VCard();
+//        }
+//
+//        return vCard;
+//
+//    }
 
     public String getFullName() {
         return getFullName(false);
     }
 
     public String getFullName(boolean firstLast) {
-
-        StringBuilder sb = new StringBuilder();
-
-        StructuredName sn = getVCard().getStructuredName();
-
-        if (sn != null) {
-            if (firstLast) {
-                sb.append(sn.getGiven());
-                sb.append(" ");
-                sb.append(sn.getFamily());
-            } else {
-                sb.append(sn.getFamily());
-                sb.append(", ");
-                sb.append(sn.getGiven());
-            }
-        }
-
-        String fullName = sb.toString();
-
-        if (Validator.isNull(fullName)) {
-
-            Organization organization = getVCard().getOrganization();
-
-            if (organization != null) {
-
-                List<String> values = organization.getValues();
-
-                Iterator<String> iterator = values.iterator();
-
-                while (iterator.hasNext()) {
-
-                    sb.append(iterator.next());
-                    if (iterator.hasNext()) {
-                        sb.append(", ");
-                    }
-
-                }
-            }
-
-        }
+    	String fullName = "Full Name";
+    	//TODO reenable after proper ezvcard import
+//        StringBuilder sb = new StringBuilder();
+//
+//        StructuredName sn = getVCard().getStructuredName();
+//
+//        if (sn != null) {
+//            if (firstLast) {
+//                sb.append(sn.getGiven());
+//                sb.append(" ");
+//                sb.append(sn.getFamily());
+//            } else {
+//                sb.append(sn.getFamily());
+//                sb.append(", ");
+//                sb.append(sn.getGiven());
+//            }
+//        }
+//
+//        String fullName = sb.toString();
+//
+//        if (Validator.isNull(fullName)) {
+//
+//            Organization organization = getVCard().getOrganization();
+//
+//            if (organization != null) {
+//
+//                List<String> values = organization.getValues();
+//
+//                Iterator<String> iterator = values.iterator();
+//
+//                while (iterator.hasNext()) {
+//
+//                    sb.append(iterator.next());
+//                    if (iterator.hasNext()) {
+//                        sb.append(", ");
+//                    }
+//
+//                }
+//            }
+//
+//        }
 
         return fullName;
 
